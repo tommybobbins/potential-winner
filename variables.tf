@@ -25,7 +25,7 @@ variable "bucket_name" {
 
 variable "break_wordpress" {
   description = "Break Wordpress for a technical test"
-  default     = "false"
+  default     = "true"
 }
 
 variable "aws_az" {

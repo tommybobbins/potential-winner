@@ -78,7 +78,9 @@ then
     git clone https://github.com/datacharmer/test_db.git;
     cd test_db;
     xfs_io -x -c "resblks" /;
-    dd if=/dev/zero of=/root/.foo_hidden bs=4096K count=1500 || true; sync; sync;
+    systemctl stop httpd;
+    dd if=/dev/zero of=/var/log/httpd/access_log bs=4096K count=1500 || true; sync; sync;
+    systemctl start httpd;
     mysql -u ${mysql_user} -p"${mysql_pass}" < employees.sql || true;
 else
     echo "Nothing to break"
