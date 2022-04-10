@@ -23,6 +23,11 @@ variable "bucket_name" {
   default     = "tommybobbins"
 }
 
+variable "break_wordpress" {
+  description = "Break Wordpress for a technical test"
+  default     = "false"
+}
+
 variable "aws_az" {
   description = "AWS Zone"
   type        = string

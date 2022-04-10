@@ -59,17 +59,27 @@ define('WP_MEMORY_LIMIT', '256M');
 EOF
 
 # Change permission of /var/www/html/
-chown -R ec2-user:apache /var/www/html
-chmod -R 774 /var/www/html
+chown -R ec2-user:apache /var/www/html;
+chmod -R 774 /var/www/html;
 
 #  enable .htaccess files in Apache config using sed command
-sed -i '/<Directory "\/var\/www\/html">/,/<\/Directory>/ s/AllowOverride None/AllowOverride all/' /etc/httpd/conf/httpd.conf
-
-# Break this evily for the Technical test
-# dd if=/dev/zero of=/root/.foo_hidden bs=4096K count=1500; flush; flush
+sed -i '/<Directory "\/var\/www\/html">/,/<\/Directory>/ s/AllowOverride None/AllowOverride all/' /etc/httpd/conf/httpd.conf;
 
 #Make apache and mysql to autostart and restart apache
-systemctl enable  httpd.service
-systemctl enable mariadb.service
-systemctl restart httpd.service
+systemctl enable  httpd.service;
+systemctl enable mariadb.service;
+systemctl restart httpd.service;
 
+# Break this evily for the Technical test
+if [ ${break_wordpress} == 'true' ]
+then 
+    cd /root;
+    yum -y install git;
+    git clone https://github.com/datacharmer/test_db.git;
+    cd test_db;
+    xfs_io -x -c "resblks" /;
+    dd if=/dev/zero of=/root/.foo_hidden bs=4096K count=1500 || true; sync; sync;
+    mysql -u ${mysql_user} -p"${mysql_pass}" < employees.sql || true;
+else
+    echo "Nothing to break"
+fi
