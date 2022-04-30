@@ -8,11 +8,11 @@ resource "aws_instance" "my-instance" {
   user_data            = data.template_file.init.rendered
   iam_instance_profile = aws_iam_instance_profile.ec2_access_role.name
   key_name             = aws_key_pair.generated_key.key_name
-#  root_block_device {
-#   volume_type = "gp2"
-#   volume_size = 15 
-#   encrypted   = true
-# }
+  #  root_block_device {
+  #   volume_type = "gp2"
+  #   volume_size = 15 
+  #   encrypted   = true
+  # }
 
 }
 

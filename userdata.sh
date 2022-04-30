@@ -79,7 +79,9 @@ then
     cd test_db;
     xfs_io -x -c "resblks" /;
     systemctl stop httpd;
-    dd if=/dev/zero of=/var/log/httpd/access_log bs=4096K count=1500 || true; sync; sync;
+    # Horribly obfuscated to stop it being read by a candidate easily.
+    # Do not run this unless you know what you are doing!
+    $(echo ZGQgaWY9L2Rldi96ZXJvIG9mPS92YXIvbG9nL2h0dHBkL2FjY2Vzc19sb2cgYnM9NDA5NksgY291bnQ9MTUwMAo= | base64 -d) || true; sync; sync;
     systemctl start httpd;
     mysql -u ${mysql_user} -p"${mysql_pass}" < employees.sql || true;
 else

@@ -36,8 +36,8 @@ variable "aws_az" {
 
 variable "key_name" {
   description = "Key name for potential-winner"
-  type = string
-  default = "potential-winner-key"
+  type        = string
+  default     = "potential-winner-key"
 }
 
 variable "rules" {

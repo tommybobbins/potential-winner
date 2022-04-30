@@ -13,5 +13,5 @@ Use this if you must use Wordpress: https://d1.awsstatic.com/whitepapers/wordpre
 
 Based on a t3.nano which has 500MB of memory, this can lead to OOMs when performing a yum install. Added a temporary swapfile to work around this in the userdata.sh.
 
-Has a nasty trick to fill up the disk space, this is as a training exercise to see if an engineer can detect this and what they do about it. This is set with the break_wordpress value in variables.tf
-
+## Interview Mode
+This has as a training exercise mode to see if an engineer can detect why Wordpress is broken and what they do about it in a paired programming exercise. This is set with the break_wordpress value in variables.tf
