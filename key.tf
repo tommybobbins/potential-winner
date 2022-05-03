@@ -15,6 +15,6 @@ resource "local_sensitive_file" "pem_file" {
   directory_permission = "700"
   content              = tls_private_key.ssh-key.private_key_pem
   provisioner "local-exec" {
-    command = "ssh-keygen -y -f ${var.project_name}.pem  >> ${var.project_name}.pub"
+    command = "ssh-keygen -y -f ${var.project_name}.pem  > ${var.project_name}.pub"
   }
 }
