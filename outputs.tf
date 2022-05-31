@@ -15,6 +15,6 @@ output "SSH-string" {
 
 output "volume-id" {
   description = "Describe volumes"
-  value = join("", ["aws ec2 modify-volume --size=10 --volume-id ", aws_instance.my-instance.root_block_device[0].volume_id, " --region ", var.aws_region ])
+  value       = join("", ["aws ec2 modify-volume --size=10 --volume-id ", aws_instance.my-instance.root_block_device[0].volume_id, " --region ", var.aws_region])
 }
 

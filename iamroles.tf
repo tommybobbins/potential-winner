@@ -25,21 +25,8 @@ data "aws_iam_policy_document" "ec2_instance_assume_role_policy" {
 }
 
 #
-resource "aws_iam_role_policy_attachment" "ec2_instance_role" {
-  role = aws_iam_role.ec2_instance_role.name
-  #  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
-  policy_arn = aws_iam_policy.s3_policy.arn
-}
-
 resource "aws_iam_role_policy_attachment" "ssm_core_role" {
   role       = aws_iam_role.ec2_instance_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-}
-
-# More restrictive S3 policy instead of AmazonS3FullAccess
-resource "aws_iam_policy" "s3_policy" {
-  name        = "s3_policy"
-  description = "Policy to allow access to S3"
-  policy      = file("json/policys3bucket.json")
 }
 
