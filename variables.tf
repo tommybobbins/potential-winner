@@ -18,14 +18,9 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
-variable "bucket_name" {
-  description = "Bucket - remove me"
-  default     = "tommybobbins"
-}
-
 variable "break_wordpress" {
   description = "Break Wordpress for a technical test"
-  default     = "false"
+  default     = "true"
 }
 
 variable "aws_az" {
@@ -69,7 +64,6 @@ variable "rules" {
 locals {
   userdata = {
     project_name    = var.project_name,
-    bucket_name     = var.bucket_name,
     host_name       = var.host_name,
     mysql_user      = var.project_name,
     mysql_db        = var.wordpress_dbname,
