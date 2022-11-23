@@ -5,7 +5,7 @@ chmod 600 /var/cache/swapfile;
 mkswap /var/cache/swapfile;
 swapon /var/cache/swapfile;
 free -m > /var/tmp/swap.txt
-yum update -y;
+yum update;
 yum upgrade -y;
 amazon-linux-extras install epel -y;
 yum upgrade -y;
@@ -18,6 +18,7 @@ systemctl enable mariadb --now;
 amazon-linux-extras install php8.0
 amazon-linux-extras enable php8.0;
 yum clean metadata;
+yum update;
 yum install -y php php-{pear,cgi,common,curl,mbstring,gd,mysqlnd,gettext,bcmath,json,xml,fpm,intl,zip,devel,fpm}
 yum -y install gcc ImageMagick ImageMagick-devel ImageMagick-perl;
 yum -y install php-pecl-imagick;
